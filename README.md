@@ -1,8 +1,6 @@
 # 480Database
 
 
-https://www.youtube.com/watch?v=W1Kttu53qTg
-
 ## Intro 
 
 # packages
