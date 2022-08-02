@@ -18,10 +18,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link border-bottom border-warning" rel="TABLES" href="/"> TABLES</a>
+              <a class="nav-link" rel="TABLES" href="/"> TABLES</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" rel="INSERT" href="/insert">INSERT</a>
+              <a class="nav-link border-bottom border-warning" rel="INSERT" href="/insert">INSERT</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" rel="UPDATE" href="/update">UPDATE</a>
@@ -38,11 +38,19 @@
 
 
     <main class ="container vh-100 bg-light text-center">
-        <h1> HOME </h1>
+        <h1> </h1>
 
 
         <div class="container">
-         
+
+            <h1 class="mb-3"> <%= where %></h1>
+          <form action= <%= action %>  method=<%= method %>>
+            <input type="text" name="firstName" placeholder="First Name">
+            <input type="text" name="lastName" placeholder="Last Name">
+            <input type="text" name="phone" placeholder="000-000-0000">
+            <input type="submit" value="Submit Form">
+          </form>
+
         </div>
         
     </main>

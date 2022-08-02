@@ -5,12 +5,12 @@ const app = express()
 const router = express.Router()
 
 router.get('/', (req, res)=>{
-    res.send("Update page")
+    // res.send("Search HOME")
+    res.render('../views/search.ejs', {message: "search home"})
 })
 
-router.get('/:id', (req, res)=>{
-    res.send("Update with id")
-})
+
+
 
 // export 
 module.exports = router

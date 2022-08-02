@@ -5,11 +5,8 @@ const app = express()
 const router = express.Router()
 
 router.get('/', (req, res)=>{
-    res.send("delete page")
-})
-
-router.get('/', (req, res)=>{
-    res.send("delete page with id")
+    // res.send("insert HOME")
+    res.render('../views/insert', {message: "hello from insert.js"})
 })
 
 // export 

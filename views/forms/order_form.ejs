@@ -38,11 +38,13 @@
 
 
     <main class ="container vh-100 bg-light text-center">
-        <h1> HOME </h1>
 
+        <h1 class="mb-3"> <%= where %></h1>
+          <form action=<%= action %>  method=<%= method %>>
+            <input type="text" name="firstName">
+            <input type="submit" value="Submit Form">
+          </form>
 
-        <div class="container">
-         
         </div>
         
     </main>
@@ -55,12 +57,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-

@@ -18,25 +18,31 @@ app.set('view engine', 'ejs')
 
 
 
-
 app.get('/', (req, res)=>{
-    res.render('../views/index', {message: "hello from kim"})
+    res.render('../views/index')
 })
 
-app.post('/form', (req, res)=>{
-    // res.send("Hello")
-    // res.send(JSON.stringify(req.body))
-    console.log(req.body.firstName)
 
-    res.render('../views/index', {message: "hello from kim", path: "/"})
-})
+// app.post('/:id', (req, res)=>{
+//     console.log(req.body.firstName)
+//     console.log(req.params.id);
 
-// it will takes care of individual page routes
-app.use('/insert', require('./router/insert.js'))
-app.use('/update', require('./router/update.js'))
-app.use('/delete', require('./router/delete.js'))
-app.use('/search', require('./router/search.js'))
-app.use('/table', require('./router/table.js'))
+//     res.render('../views/index', {method: "ID", action: "/"})
+// })
+
+// it will takes care of individual PAGES routes
+app.use('/insert', require('./router/pages/insert.js'))
+app.use('/update', require('./router/pages/update.js'))
+app.use('/delete', require('./router/pages/delete.js'))
+app.use('/search', require('./router/pages/search.js'))
+
+
+// it will takes care of individual TABLE routes
+app.use('/customer', require('./router/tables/customer.js'))
+app.use('/orders', require('./router/tables/orders.js'))
+app.use('/item', require('./router/tables/item.js'))
+app.use('/order_detail', require('./router/tables/order_detail.js'))
+app.use('/table', require('./router/tables/table.js'))
 
 app.listen(3000)
 
