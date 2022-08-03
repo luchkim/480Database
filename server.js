@@ -23,13 +23,6 @@ app.get('/', (req, res)=>{
 })
 
 
-// app.post('/:id', (req, res)=>{
-//     console.log(req.body.firstName)
-//     console.log(req.params.id);
-
-//     res.render('../views/index', {method: "ID", action: "/"})
-// })
-
 // it will takes care of individual PAGES routes
 app.use('/insert', require('./router/pages/insert.js'))
 app.use('/update', require('./router/pages/update.js'))

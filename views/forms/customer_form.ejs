@@ -21,16 +21,32 @@
               <a class="nav-link" rel="TABLES" href="/"> TABLES</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link border-bottom border-warning" rel="INSERT" href="/insert">INSERT</a>
+              <% if(task == 'insert') {%> 
+                <a class="nav-link border-bottom border-warning" rel="INSERT" href="/insert">INSERT</a>
+              <% }else{ %> 
+                <a class="nav-link" rel="INSERT" href="/insert">INSERT</a>
+              <% } %> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" rel="UPDATE" href="/update">UPDATE</a>
+              <% if(task == 'update') {%> 
+               <a class="nav-link border-bottom border-warning" rel="UPDATE" href="/update">UPDATE</a>
+              <%} else {%>
+                <a class="nav-link" rel="UPDATE" href="/update">UPDATE</a>
+              <% } %> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" rel="DELETE" href="/delete">DELETE</a>
+              <% if(task == 'delete') {%> 
+               <a class="nav-link border-bottom border-warning" rel="DELETE" href="/delete">DELETE</a>
+              <% }else{ %> 
+               <a class="nav-link" rel="DELETE" href="/delete">DELETE</a>
+              <% } %> 
             </li>
             <li class="nav-item">
+              <% if(task == 'search') {%> 
+                <a class="nav-link border-bottom border-warning" rel="SEARCH" href="/search">SEARCH</a>
+              <% }else{ %> 
                 <a class="nav-link" rel="SEARCH" href="/search">SEARCH</a>
+              <% } %> 
             </li>
           </ul>
         </div>
@@ -45,6 +61,11 @@
 
             <h1 class="mb-3"> <%= where %></h1>
           <form action= <%= action %>  method=<%= method %>>
+
+            <% if(id != " ") {%> 
+              <input name="id" placeholder="id">
+            <% }%> 
+
             <input type="text" name="firstName" placeholder="First Name">
             <input type="text" name="lastName" placeholder="Last Name">
             <input type="text" name="phone" placeholder="000-000-0000">

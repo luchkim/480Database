@@ -7,7 +7,6 @@ const router = express.Router();
 let db = new sqlite3.Database('./Shop.db', sqlite3.OPEN_READWRITE, (err)=>{
     if(err) return console.error(err.message);
     console.log("DB Connection successfull");
-
 })
 
 // CREATE
@@ -20,6 +19,20 @@ let db = new sqlite3.Database('./Shop.db', sqlite3.OPEN_READWRITE, (err)=>{
 // db.run(sql);
 // db.run(b);
 // db.run(s);
+// let dbo ={}
+
+// sql = 'SELECT * FROM Customer';
+// db.all(sql, [], (err, rows)=>{
+//     if(err) return console.log(err.message)
+//     console.log("OUTPUT CUSTOMER")
+//     console.log(rows.length);
+
+//     rows.forEach(row =>{
+
+//         console.log(row, "hello");
+//     })
+// })
+
 
 module.export = db;
 
@@ -40,10 +53,11 @@ module.export = db;
 // sql = 'SELECT * FROM Customer';
 // db.all(sql, [], (err, rows)=>{
 //     if(err) return console.log(err.message)
-//     rows.forEach(row=>{
+//     rows.forEach(row =>{
 //         console.log(row);
 //     })
 // })
+
 
 // // UPDATE 
 // sql = 'UPDATE  Customer SET first_name, = ? WHERE id = ?';
