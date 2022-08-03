@@ -37,18 +37,245 @@
     </nav>
 
     <main class ="container vh-100 text-center">
-        <div class="container p-5">
-          <h1> <%= message %></h1>
-          <form action="/" method="POST">
-            <input type="text" name="firstName">
-            <input type="submit" value="Submit Form">
-          </form>
+        <div class="container">
+          <div class="container p-5 text-center border-bottom border-warning">
+            <h1 class="mb-3"> <%= message %></h1>
+              <a class="btn btn-primary" href="/customer/search" role="button">Customer</a>
+              <a class="btn btn-primary" href="/item/search" role="button">Item</a>
+              <a class="btn btn-primary" href="/orders/search" role="button">Orders</a>
+              <a class="btn btn-primary" href="/order_detail/search" role="button">Order_detail</a>
+          </div>
+
+            <div class="container p-3">
+              <h3 class="p-3">Nested Queries</h3>
+              <div class="row">
+                <div class="col">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find Item inventory's average price</label>
+                      <input type="text" name="nested" value="itemAvgP" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+
+                <div class="col align-text-bottom">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find Item inventory's average weight</label>
+                      <input type="text" name="nested" value="itemAvgW" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+                <div class="col">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find customers with order price bigger than $50</label>
+                      <input type="text" name="nested" value="fifty" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+                <div class="col">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find customers' last name starts with S and ends with T </label>
+                      <input type="text" name="nested" value="nameMatch" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+<!-- two -->
+            <br>
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find most expensive item</label>
+                      <input type="text" name="two" value="two" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+
+                <div class="col align-text-bottom">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find most popular item</label>
+                      <input type="text" name="two" value="three" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+                <div class="col">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find largest quantity order</label>
+                      <input type="text" name="two" value="four" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+                <div class="col">
+                  <form action="/search/" method="POST">
+                    <div class="container p-2">
+                      <label>Find loyal customer</label>
+                      <input type="text" name="two" value="five" hidden>
+                      <input type="submit" value="Submit Form">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="container">
+              <% if (data == 'a') { %> 
+                <h4>RESULT</h4>
+                <table class="table table-hover table-responsive">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Item_id</th>
+                      <th scope="col">Item_name</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Weight</th>
+                      <th scope="col">Description</th>
+                    </tr>
+                  </thead>
+       
+                  <tbody class="bg-light">
+                   <% for (let i = 0; i < rows.length; i++){ %> 
+                    <tr>
+                      <th scope="row"><%-rows[i].Item_id %> </th>
+                      <td><%-rows[i].item_name %> </td>
+                      <td><%-rows[i].price %> </td>
+                      <td><%-rows[i].weight %> </td>
+                      <td><%-rows[i].description %> </td>
+                    </tr>
+                    <% } %> 
+                  </tbody>
+                </table>
+              
+              <% } %> 
+            </div>
+
+            <div class="container">
+              <% if (data == 'b') {%> 
+                <h4>RESULT</h4>
+                <table class="table table-hover table-responsive">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Customer_id</th>
+                      <th scope="col">first_name</th>
+                      <th scope="col">last_name</th>
+                      <th scope="col">phone</th>
+                    </tr>
+                  </thead>
+      
+                  <tbody class="bg-light">
+                    <% for(let i = 0; i < rows.length; i++){ %> 
+                    <tr>
+                      <th scope="row"><%- rows[i].Customer_id %> </th>
+                      <td><%- rows[i].first_name %> </td>
+                      <td><%- rows[i].last_name %></td>
+                      <td><%- rows[i].phone %></td>
+                    </tr>
+                    <% } %> 
+                  </tbody>
+                </table>
+              <% } %> 
+            </div>
+
+            <div class="container">
+              <% if (data == 'c') {%> 
+                <h4>RESULT</h4>
+                <table class="table table-hover table-responsive">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Customer_id</th>
+                      <th scope="col">first_name</th>
+                      <th scope="col">last_name</th>
+                      <th scope="col">phone</th>
+                    </tr>
+                  </thead>
+      
+                  <tbody class="bg-light">
+                    <% for(let i = 0; i < rows.length; i++){ %> 
+                    <tr>
+                      <th scope="row"><%- rows[i].Customer_id %> </th>
+                      <td><%- rows[i].first_name %> </td>
+                      <td><%- rows[i].last_name %></td>
+                      <td><%- rows[i].phone %></td>
+                    </tr>
+                    <% } %> 
+                  </tbody>
+                </table>
+              <% } %> 
+            </div>
+
+            <div class="container">
+              <% if (data == 'd') {%> 
+                <h4>RESULT</h4>
+                <table class="table table-hover table-responsive">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Customer_id</th>
+                      <th scope="col">first_name</th>
+                      <th scope="col">last_name</th>
+                      <th scope="col">phone</th>
+                    </tr>
+                  </thead>
+      
+                  <tbody class="bg-light">
+                    <% for(let i = 0; i < rows.length; i++){ %> 
+                    <tr>
+                      <th scope="row"><%- rows[i].Customer_id %> </th>
+                      <td><%- rows[i].first_name %> </td>
+                      <td><%- rows[i].last_name %></td>
+                      <td><%- rows[i].phone %></td>
+                    </tr>
+                    <% } %> 
+                  </tbody>
+                </table>
+              <% } %> 
+            </div>
+
+
+            <div class="container">
+              <% if (data == 'd') {%> 
+                <h4>RESULT</h4>
+                <table class="table table-hover table-responsive">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Customer_id</th>
+                      <th scope="col">first_name</th>
+                      <th scope="col">last_name</th>
+                      <th scope="col">phone</th>
+                    </tr>
+                  </thead>
+      
+                  <tbody class="bg-light">
+                    <% for(let i = 0; i < rows.length; i++){ %> 
+                    <tr>
+                      <th scope="row"><%- rows[i].Customer_id %> </th>
+                      <td><%- rows[i].first_name %> </td>
+                      <td><%- rows[i].last_name %></td>
+                      <td><%- rows[i].phone %></td>
+                    </tr>
+                    <% } %> 
+                  </tbody>
+                </table>
+              <% } %> 
+            </div>
 
         </div>
         
     </main>
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -56,4 +283,3 @@
 </body>
 
 </html>
-

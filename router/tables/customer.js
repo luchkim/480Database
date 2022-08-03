@@ -70,6 +70,48 @@ try{
 }
 
 
+// Customer search
+try{
+    // will render customer_form to get the information as UPDATE
+    router.get('/search', (req, res)=>{
+        // res.send("WELCOME TO C SEARCH")
+        res.render('../views/search/s_customer', {task:"search", method: "POST", where: "SEARCH from CUSTOMER", action:"/customer/search", crows: " "})
+    })
+
+    // will render cunstomr_form to delete info as DELETE
+    router.post('/search', async(req, res)=>{
+        console.log(req.body.code)
+        if(req.body.code == 'id'){
+            console.log(req.body.id)
+            let sql = `SELECT * FROM Customer WHERE Customer_id = $id;`
+            let param = {$id: req.body.id}
+            let row = await sqliteAll(sql, param, "SEARCH")
+
+            res.render('../views/search/s_customer', {task:"search", method: "POST", where: "DELETE from CUSTOMER", action:"/customer/search", crows: row})
+
+        } else if (req.body.code == 'name') {
+            console.log(req.body.lastName)
+            let sql = `SELECT * FROM Customer WHERE last_name = $lname;`
+            let param = {$lname: req.body.lastName}
+            let row = await sqliteAll(sql, param, "SEARCH")
+
+            res.render('../views/search/s_customer', {task:"search", method: "POST", where: "DELETE from CUSTOMER", action:"/customer/search", crows: row})
+
+        }else if (req.body.code == 'ph') {
+            let sql = `SELECT * FROM Customer WHERE phone = $ph;`
+            let param = {$ph: req.body.phone}
+            let row = await sqliteAll(sql, param, "SEARCH")
+            res.render('../views/search/s_customer', {task:"search", method: "POST", where: "DELETE from CUSTOMER", action:"/customer/search", crows: row})
+        }
+
+
+        // res.render('../views/search/s_customer', {task:"search", method: "POST", where: "DELETE from CUSTOMER", action:"/customer/search", crows: " "})
+    })
+}catch(err){
+    console.error("Error catched in customer delete")
+}
+
+
 
 
 
@@ -138,6 +180,27 @@ async function sqliteRun(sql, parameters, msg){
             }
         }); 
 
+        console.log(msg + " SUCCESS!")
+        database.close();
+    });
+
+    let result = await promise;
+    
+    return result;
+}
+
+
+// List 
+async function sqliteAll(sql, param,  msg) {
+    let promise = new Promise((resolve, reject) => {
+        let database = new sqlite3.Database("Shop.db");
+        database.serialize();
+        database.all(sql, param, function(error, rows) {
+            if (error)
+                reject(error);
+            else
+                resolve(rows);
+        });
         console.log(msg + " SUCCESS!")
         database.close();
     });

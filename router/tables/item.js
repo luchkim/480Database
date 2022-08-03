@@ -86,6 +86,45 @@ try{
 }
 
 
+// ITEM search
+try{
+    // will render Item form  to get the information as UPDATE
+    router.get('/search', (req, res)=>{
+        // res.send("WELCOME TO C SEARCH")
+        res.render('../views/search/s_item', {task:"search", method: "POST", where: "SEARCH from ITEM", action:"/item/search", crows: " "})
+    })
+
+    // will render cunstomr_form to delete info as DELETE
+    router.post('/search', async(req, res)=>{
+        console.log(req.body.code)
+        if(req.body.code == 'id'){
+            console.log(req.body.id)
+            let sql = `SELECT * FROM Item WHERE Item_id = $id;`
+
+            let param = {$id: req.body.id}
+            let row = await sqliteA(sql, param, "SEARCH")
+
+            res.render('../views/search/s_item', {task:"search", method: "POST", where: "SEARCH from ITEM", action:"/item/search", crows: row})
+
+        } else if (req.body.code == 'iname') {
+            console.log(req.body.itemName)
+            let sql = `SELECT * FROM Item WHERE item_name = $name;`
+            let param = {$name: req.body.itemName}
+            let row = await sqliteA(sql, param, "SEARCH")
+
+            res.render('../views/search/s_item', {task:"search", method: "POST", where: "SEARCH from ITEM", action:"/item/search", crows: row})
+        }
+
+        // res.render('../views/search/s_customer', {task:"search", method: "POST", where: "DELETE from CUSTOMER", action:"/customer/search", crows: " "})
+    })
+}catch(err){
+    console.error("Error catched in customer delete")
+}
+
+
+
+
+
 
 /*
     FUNCTIONS
@@ -163,7 +202,6 @@ async function sqliteRun(sql, parameters, msg){
 }
 
 
-
 async function sqliteAll(sql) {
     let promise = new Promise((resolve, reject) => {
         let database = new sqlite3.Database("Shop.db");
@@ -217,6 +255,24 @@ async function sqliteAl(sql, parameters) {
 
 
 
+// List 
+async function sqliteA(sql, param,  msg) {
+    let promise = new Promise((resolve, reject) => {
+        let database = new sqlite3.Database("Shop.db");
+        database.serialize();
+        database.all(sql, param, function(error, rows) {
+            if (error)
+                reject(error);
+            else
+                resolve(rows);
+        });
+        console.log(msg + " SUCCESS!")
+        database.close();
+    });
+
+    let result = await promise;
+    return result;
+}
 
 
 // export 

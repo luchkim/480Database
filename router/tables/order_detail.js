@@ -133,6 +133,47 @@ try{
 
 
 
+
+
+
+// ORDER search
+try{
+    // will render customer_form to get the information as UPDATE
+    router.get('/search', (req, res)=>{
+        res.render('../views/search/s_order_detail', {task:"search", method: "POST", where: "SEARCH from ORDER DETAIL", action:"/order_detail/search", crows: " "})
+    })
+
+    // will render cunstomr_form to delete info as DELETE
+    router.post('/search', async(req, res)=>{
+
+        console.log(req.body.code)
+        // res.send("Waht is Order")
+
+        if(req.body.code == 'id'){
+            console.log(req.body.id)
+            let sql = `SELECT * FROM Order_detail WHERE Order_id = $id;`
+            let param = {$id: req.body.id}
+            let row = await sqliteAll(sql, param, "SEARCH")
+
+            res.render('../views/search/s_order_detail', {task:"search", method: "POST", where: "SEARCH from ORDER DETAIL", action:"/order_detail/search", crows: row})
+        } else {
+            res.render('../views/search/s_order_detail', {task:"search", method: "POST", where: "SEARCH from ORDER DETAIL", action:"/order_detail/search", crows: " "})
+        }
+
+
+        // res.render('../views/search/s_order_detail', {task:"search", method: "POST", where: "DELETE from CUSTOMER", action:"/customer/search", crows: " "})
+    })
+}catch(err){
+    console.error("Error catched in customer delete")
+}
+
+
+
+
+
+
+
+
 /**
  * CHECK if Foreign key exists for Reference
  */

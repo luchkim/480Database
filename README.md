@@ -3,6 +3,12 @@
 
 ## Intro 
 
+To run the app, use command "npm run start"
+if it produces error: replace "start": "nodemon -e js,ejs, server.js" with "start": "nodemon server.js"
+
+It is an database CRUD application with Node.js and EJS template. 
+
+
 # packages
 morgan: dynamic logger 
 nodemon: refresh server if there is changes

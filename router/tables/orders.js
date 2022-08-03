@@ -6,8 +6,6 @@ const sqlite3 = require("sqlite3")
 
 
 
-
-
 /*
     RENDER INSERT FORM
     HANDLE POST REQUEST
@@ -88,6 +86,47 @@ try{
 }catch(err){
     console.error("Error catched in Orders delete")
 }
+
+
+
+
+
+
+// ORDER search
+try{
+    // will render customer_form to get the information as UPDATE
+    router.get('/search', (req, res)=>{
+        res.render('../views/search/s_orders', {task:"search", method: "POST", where: "SEARCH from ORDER", action:"/orders/search", crows: " "})
+    })
+
+    // will render cunstomr_form to delete info as DELETE
+    router.post('/search', async(req, res)=>{
+
+        console.log(req.body.code)
+        // res.send("Waht is Order")
+
+        if(req.body.code == 'id'){
+            console.log(req.body.id)
+            let sql = `SELECT * FROM Orders WHERE Order_id = $id;`
+            let param = {$id: req.body.id}
+            let row = await sqliteAll(sql, param, "SEARCH")
+
+            res.render('../views/search/s_orders', {task:"search", method: "POST", where: "DELETE from ORDER", action:"/orders/search", crows: row})
+        } else {
+            res.render('../views/search/s_orders', {task:"search", method: "POST", where: "SEARCH from ORDER", action:"/orders/search", crows: " "})
+        }
+
+
+        // res.render('../views/search/s_orders', {task:"search", method: "POST", where: "DELETE from CUSTOMER", action:"/customer/search", crows: " "})
+    })
+}catch(err){
+    console.error("Error catched in customer delete")
+}
+
+
+
+
+
 
 
 
