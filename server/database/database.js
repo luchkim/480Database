@@ -3,15 +3,15 @@ const sqlite3 = require("sqlite3").verbose();
 const express = require('express')
 const router = express.Router();
 
-// exports.db = new sqlite3.Database('./Shop.db', sqlite3.db, (err)=>{
-let db = new sqlite3.Database('./Shop.db', sqlite3.OPEN_READWRITE, (err)=>{
+let db = new sqlite3.Database('./Shop.db', sqlite3.db, (err)=>{
+// let db = new sqlite3.Database('./Shop.db', sqlite3.OPEN_READWRITE, (err)=>{
     if(err) return console.error(err.message);
     console.log("DB Connection successfull");
 })
 
 // CREATE
 // let a = `CREATE TABLE Customer(Customer_id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, phone TEXT NOT NULL);`
-// let sql = `CREATE TABLE Item(Item_id INTEGER PRIMARY KEY, item_name TEXT NOT NULL, price REAL, description TEXT, weight REAL);`
+// let sql = `CREATE TABLE Item(Item_id INTEGER PRIMARY KEY, item_name TEXT NOT NULL, price REAL, weight REAL, description TEXT);`
 // let b = `CREATE TABLE Orders(Order_id INTEGER PRIMARY KEY, Customer_id INTEGER NOT NULL, date TEXT NOT NULL, FOREIGN KEY (Customer_id) references Customer);`
 // let s = `CREATE TABLE Order_detail(Order_id INTEGER NOT NULL, Item_id INTEGER NOT NULL, quantity INTEGER, price REAL, PRIMARY KEY(Order_id, Item_id), FOREIGN KEY(Order_id) REFERENCES Orders, FOREIGN KEY(Item_id) REFERENCES Item);`
 
@@ -21,20 +21,19 @@ let db = new sqlite3.Database('./Shop.db', sqlite3.OPEN_READWRITE, (err)=>{
 // db.run(s);
 // let dbo ={}
 
-// sql = 'SELECT * FROM Customer';
+
+// sql = 'SELECT * FROM Item';
 // db.all(sql, [], (err, rows)=>{
 //     if(err) return console.log(err.message)
-//     console.log("OUTPUT CUSTOMER")
 //     console.log(rows.length);
-
 //     rows.forEach(row =>{
-
-//         console.log(row, "hello");
+//         console.log(row);
 //     })
 // })
 
 
 module.export = db;
+
 
 
 // // create table. id auto increase

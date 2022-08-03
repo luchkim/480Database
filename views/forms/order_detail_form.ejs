@@ -18,19 +18,35 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link border-bottom border-warning" rel="TABLES" href="/"> TABLES</a>
+              <a class="nav-link" rel="TABLES" href="/"> TABLES</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" rel="INSERT" href="/insert">INSERT</a>
+              <% if(task == 'insert') {%> 
+                <a class="nav-link border-bottom border-warning" rel="INSERT" href="/insert">INSERT</a>
+              <% }else{ %> 
+                <a class="nav-link" rel="INSERT" href="/insert">INSERT</a>
+              <% } %> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" rel="UPDATE" href="/update">UPDATE</a>
+              <% if(task == 'update') {%> 
+               <a class="nav-link border-bottom border-warning" rel="UPDATE" href="/update">UPDATE</a>
+              <%} else {%>
+                <a class="nav-link" rel="UPDATE" href="/update">UPDATE</a>
+              <% } %> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" rel="DELETE" href="/delete">DELETE</a>
+              <% if(task == 'delete') {%> 
+               <a class="nav-link border-bottom border-warning" rel="DELETE" href="/delete">DELETE</a>
+              <% }else{ %> 
+               <a class="nav-link" rel="DELETE" href="/delete">DELETE</a>
+              <% } %> 
             </li>
             <li class="nav-item">
+              <% if(task == 'search') {%> 
+                <a class="nav-link border-bottom border-warning" rel="SEARCH" href="/search">SEARCH</a>
+              <% }else{ %> 
                 <a class="nav-link" rel="SEARCH" href="/search">SEARCH</a>
+              <% } %> 
             </li>
           </ul>
         </div>
@@ -40,20 +56,25 @@
     <main class ="container vh-100 bg-light text-center">
         <h1> </h1>
 
+        <div class="container p-5">
+          <h1 class="mb-3"> <%= where %></h1>
+          <form class ="p-2" action= <%= action %>  method=<%= method %>>
 
-        <div class="container">
-            <h1 class="mb-3"> <%= where %></h1>
+            <% if(id != " ") {%> 
+              <input name="order_id" placeholder="Order id">
+              <input name="item_id" placeholder="Item id">
+            <% }%> 
 
-          <form action=<%= action %> method=<%= method %>>
-            <input type="text" name="firstName">
+            <% if(task != "delete") {%> 
+              <input type="text" name="order_id" placeholder="order_id">
+              <input type="text" name="item_id" placeholder="Item id">
+              <input type="number" name="quantity" placeholder="Quantity">
+              <input type="text" name="price" placeholder="Price $">
+            <% } %> 
             <input type="submit" value="Submit Form">
           </form>
-
         </div>
-        
     </main>
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

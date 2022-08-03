@@ -1,11 +1,9 @@
-// https://www.youtube.com/watch?v=SccSCuHhOw0
 
 const express = require('express')
-// pointing to router folder
 const app = express("/server/database.js")
-// database 
 let db = require('./server/database/database')
 let bodyParser = require("body-parser")
+let morgan = require("morgan")
 
 
 
@@ -15,12 +13,6 @@ app.use(bodyParser.urlencoded({ extended : true}))
 app.use(bodyParser.json())
 // setting the ejs engin, change html files extension to .ejs
 app.set('view engine', 'ejs')
-
-
-
-app.get('/', (req, res)=>{
-    res.render('../views/index')
-})
 
 
 // it will takes care of individual PAGES routes
@@ -35,10 +27,9 @@ app.use('/customer', require('./router/tables/customer.js'))
 app.use('/orders', require('./router/tables/orders.js'))
 app.use('/item', require('./router/tables/item.js'))
 app.use('/order_detail', require('./router/tables/order_detail.js'))
-app.use('/table', require('./router/tables/table.js'))
+app.use('/', require('./router/pages/table.js'))
 
 app.listen(3000)
-
 
 
 

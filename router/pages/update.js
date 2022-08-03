@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', (req, res)=>{
     // res.send("Update HOME")
-    res.render('../views/update.ejs', {message: "update home", where:"UPDATE"})
+    res.render('../views/update.ejs', {message: "update home", where:"UPDATE ON"})
 })
 
 

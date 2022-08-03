@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', (req, res)=>{
     // res.send("insert HOME")
-    res.render('../views/insert', {message: "hello from insert.js"})
+    res.render('../views/insert')
 })
 
 // export 
