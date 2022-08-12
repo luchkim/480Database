@@ -6,7 +6,6 @@
   "scripts": {
     "start": "nodemon -e js,ejs, server.js"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luchkim/480Database.git"
@@ -17,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/luchkim/480Database/issues"
   },
+
   "homepage": "https://github.com/luchkim/480Database#readme",
   "dependencies": {
     "body-parser": "^1.20.0",

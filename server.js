@@ -16,7 +16,6 @@ app.set('view engine', 'ejs')
 
 
 
-
 // it will takes care of individual PAGES routes
 app.use('/insert', require('./router/pages/insert.js'))
 app.use('/update', require('./router/pages/update.js'))

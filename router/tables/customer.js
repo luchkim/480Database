@@ -72,6 +72,7 @@ try{
 
 // Customer search
 try{
+
     // will render customer_form to get the information as UPDATE
     router.get('/search', (req, res)=>{
         // res.send("WELCOME TO C SEARCH")
